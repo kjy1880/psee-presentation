@@ -17,9 +17,20 @@ body{
   display:flex; align-items:center; justify-content:center; }
 
 .slide{ position:absolute; width:95vw; height:95vh; max-width:1400px; max-height:850px;
-  opacity:0; transform:translateX(60px); transition:opacity .55s ease, transform .55s ease;
-  pointer-events:none; display:none; }
-.slide.active{ opacity:1; transform:translateX(0); pointer-events:all; display:flex; }
+  opacity:0; transform:translateX(0); pointer-events:none; display:none; }
+.slide.active{ opacity:1; transform:translateX(0); pointer-events:all; display:flex;
+  animation: slideTransitionIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes slideTransitionIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .slide-content{ width:100%; height:100%; padding:30px 48px; display:flex;
   flex-direction:column; justify-content:center; overflow:hidden; }
