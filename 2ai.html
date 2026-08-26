@@ -21,23 +21,25 @@ body{
 
 .slide {
   position: absolute;
+  top: 50%;
+  left: 50%;
   width: 95vw;
   height: 95vh;
   max-width: 1400px;
   max-height: 850px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(16px) scale(0.99);
-  transition: opacity 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
-              transform 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
-              visibility 0.42s;
+  transform: translate(-50%, calc(-50% + 14px)) scale(0.99);
+  transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              visibility 0.4s;
   pointer-events: none;
   display: flex;
 }
 .slide.active {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   pointer-events: all;
 }
 
