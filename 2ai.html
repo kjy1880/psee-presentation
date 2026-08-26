@@ -79,7 +79,7 @@ body{
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
-  display: none;
+  display: block;
 }
 .video-placeholder {
   text-align: center;
@@ -366,14 +366,9 @@ body.notes-on .slide.active .notes{ display:block; }
     <div class="slide-title">다들 이런 경험 있으신가요?</div>
 
     <div class="video-container">
-      <video id="promo-video-1" controls playsinline>
-        <source src="assets/날씨.mp4" type="video/mp4">
+      <video id="promo-video-1" controls playsinline preload="metadata">
+        <source src="assets/weather.mp4" type="video/mp4">
       </video>
-      <div class="video-placeholder" id="video-placeholder-1">
-        <div class="video-placeholder-icon">🎬</div>
-        <div class="video-placeholder-text">날씨 확인 상황 영상</div>
-        <div class="video-placeholder-subtext">assets/날씨.mp4 파일</div>
-      </div>
     </div>
   </div>
   <div class="notes">
@@ -389,14 +384,9 @@ body.notes-on .slide.active .notes{ display:block; }
     <div class="slide-title">다들 이런 경험 있으신가요?</div>
 
     <div class="video-container">
-      <video id="promo-video-2" controls playsinline>
-        <source src="assets/택배.mp4" type="video/mp4">
+      <video id="promo-video-2" controls playsinline preload="metadata">
+        <source src="assets/delivery.mp4" type="video/mp4">
       </video>
-      <div class="video-placeholder" id="video-placeholder-2">
-        <div class="video-placeholder-icon">🎬</div>
-        <div class="video-placeholder-text">택배 상황 영상</div>
-        <div class="video-placeholder-subtext">assets/택배.mp4 파일</div>
-      </div>
     </div>
   </div>
   <div class="notes">
@@ -546,7 +536,7 @@ body.notes-on .slide.active .notes{ display:block; }
 
     <div class="hw">
       <div class="hw-img">
-        <img src="assets/날씨 하드웨어 회로도 사진.png" alt="AI 날씨비서 Circuit">
+        <img src="assets/weather_circuit.png" alt="AI 날씨비서 Circuit">
       </div>
       <div class="hw-list">
         <div class="hw-item"><div class="hw-name">Button Switch</div><div class="hw-desc">사용자 요청</div></div>
@@ -582,7 +572,7 @@ body.notes-on .slide.active .notes{ display:block; }
 
     <div class="hw">
       <div class="hw-img">
-        <img src="assets/전등 하드웨어 회로도 사진.png" alt="스마트 센서등 Circuit">
+        <img src="assets/lighting_circuit.png" alt="스마트 센서등 Circuit">
       </div>
       <div class="hw-list">
         <div class="hw-item"><div class="hw-name">HLK-LD2410C</div><div class="hw-desc">mmWave 존재 감지</div></div>
@@ -736,14 +726,9 @@ body.notes-on .slide.active .notes{ display:block; }
     <div class="slide-title">향후 발전 계획 — 더 안전한 공간으로</div>
 
     <div class="video-container">
-      <video id="promo-video-3" controls playsinline>
-        <source src="assets/스토킹.mp4" type="video/mp4">
+      <video id="promo-video-3" controls playsinline preload="metadata">
+        <source src="assets/stalking.mp4" type="video/mp4">
       </video>
-      <div class="video-placeholder" id="video-placeholder-3">
-        <div class="video-placeholder-icon">🎬</div>
-        <div class="video-placeholder-text">야간 복도 상황 영상</div>
-        <div class="video-placeholder-subtext">assets/스토킹.mp4 파일</div>
-      </div>
     </div>
   </div>
   <div class="notes">
@@ -962,41 +947,15 @@ let cur = 1;
 document.getElementById('tot').textContent = total;
 
 const promoVideos = [
-  { video: document.getElementById('promo-video-1'), placeholder: document.getElementById('video-placeholder-1'), slideNum: 2 },
-  { video: document.getElementById('promo-video-2'), placeholder: document.getElementById('video-placeholder-2'), slideNum: 3 },
-  { video: document.getElementById('promo-video-3'), placeholder: document.getElementById('video-placeholder-3'), slideNum: 10 }
+  { video: document.getElementById('promo-video-1'), slideNum: 2 },
+  { video: document.getElementById('promo-video-2'), slideNum: 3 },
+  { video: document.getElementById('promo-video-3'), slideNum: 10 }
 ];
-
-promoVideos.forEach(({ video, placeholder }) => {
-  if (!video) return;
-  const onReady = () => {
-    if (placeholder) placeholder.style.display = 'none';
-    video.style.display = 'block';
-  };
-  const onError = () => {
-    if (placeholder) placeholder.style.display = 'block';
-    video.style.display = 'none';
-  };
-
-  video.addEventListener('loadeddata', onReady);
-  video.addEventListener('canplay', onReady);
-  video.addEventListener('error', onError);
-
-  if (video.readyState >= 2) {
-    onReady();
-  }
-});
 
 function handleVideoPlayback(slideNum) {
   promoVideos.forEach(({ video, slideNum: targetSlide }) => {
     if (!video) return;
-    if (slideNum === targetSlide) {
-      // 자동 재생하지 않음 - 사용자가 재생 버튼을 눌러야 함
-      if (video.style.display === 'block') {
-        video.pause();
-        video.currentTime = 0;
-      }
-    } else {
+    if (slideNum !== targetSlide) {
       video.pause();
       video.currentTime = 0;
     }
