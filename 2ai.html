@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Smart Shoe Cabinet — Final Pitch</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body{
+  font-family:'Pretendard','Segoe UI',Tahoma,sans-serif;
+  background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%);
+  color:#2c3e50; overflow:hidden; height:100vh; width:100vw;
+}
+
+.presentation-container{ width:100vw; height:100vh; position:relative;
+  display:flex; align-items:center; justify-content:center; }
+
+.slide{ position:absolute; width:95vw; height:95vh; max-width:1400px; max-height:850px;
+  opacity:0; transform:translateX(60px); transition:opacity .55s ease, transform .55s ease;
+  pointer-events:none; display:none; }
+.slide.active{ opacity:1; transform:translateX(0); pointer-events:all; display:flex; }
+
+.slide-content{ width:100%; height:100%; padding:30px 48px; display:flex;
+  flex-direction:column; justify-content:center; overflow:hidden; }
+
+/* ---------- typography ---------- */
+.eyebrow{ font-size:.95rem; letter-spacing:3px; color:#1976d2; font-weight:700;
+  text-transform:uppercase; text-align:center; margin-bottom:10px; }
+.slide-title{ font-size:2.9rem; font-weight:800; color:#12456b; margin-bottom:10px;
+  text-align:center; letter-spacing:-1px; line-height:1.2; }
+.slide-subtitle{ font-size:1.35rem; color:#3d566e; margin-bottom:22px;
+  font-weight:400; text-align:center; }
+.hl{ color:#1565c0; font-weight:800; }
+.hl-red{ color:#c62828; font-weight:800; }
+.hl-green{ color:#2e7d32; font-weight:800; }
+
+/* placeholder that the team must fill with real data */
+.ph{ background:rgba(255,193,7,.28); border-bottom:2px dashed #f39c12;
+  padding:0 6px; border-radius:3px; font-weight:700; color:#8a6100; }
+
+
+
+/* ---------- generic cards ---------- */
+.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+.card{ background:rgba(255,255,255,.94); border:2px solid rgba(21,101,192,.30);
+  border-radius:14px; padding:22px; box-shadow:0 3px 14px rgba(0,0,0,.07); }
+.card-bad{ background:rgba(255,235,238,.94); border-color:rgba(198,40,40,.45); }
+.card-good{ background:rgba(232,245,233,.94); border-color:rgba(46,125,50,.45); }
+
+.card-num{ font-size:2.6rem; font-weight:800; color:rgba(21,101,192,.25); line-height:1; }
+.card-bad .card-num{ color:rgba(198,40,40,.28); }
+.card-title{ font-size:1.3rem; font-weight:800; color:#1565c0; margin:6px 0 10px; }
+.card-bad .card-title{ color:#c62828; }
+.card-good .card-title{ color:#2e7d32; }
+.card-desc{ font-size:1.02rem; line-height:1.6; color:#37474f; }
+.card-desc b{ color:#12456b; }
+
+/* ---------- video container ---------- */
+.video-container {
+  width: 100%;
+  max-width: 860px;
+  margin: 20px auto 0;
+  aspect-ratio: 16/9;
+  background: rgba(21, 101, 192, 0.05);
+  border: 2px dashed rgba(21, 101, 192, 0.35);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: none;
+}
+.video-placeholder {
+  text-align: center;
+  color: #1565c0;
+  padding: 24px;
+}
+.video-placeholder-icon {
+  font-size: 3.8rem;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+.video-placeholder-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.video-placeholder-subtext {
+  font-size: 0.95rem;
+  color: #546e7a;
+}
+
+/* ---------- before/after ---------- */
+.ba{ display:grid; grid-template-columns:1fr 90px 1fr; align-items:center; gap:14px; margin:18px 0; }
+.ba-arrow{ font-size:2.6rem; color:#1565c0; text-align:center; font-weight:800; }
+.ba-metric{ font-size:2.5rem; font-weight:800; line-height:1.15; }
+.ba-label{ font-size:.95rem; color:#546e7a; margin-top:6px; }
+
+/* ---------- 3 step ---------- */
+.steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:18px 0; }
+.step{ background:rgba(255,255,255,.95); border-radius:14px; padding:20px 18px;
+  border-top:5px solid #1565c0; box-shadow:0 3px 14px rgba(0,0,0,.08); }
+.step-k{ font-size:.8rem; letter-spacing:2px; color:#1976d2; font-weight:800; }
+.step-t{ font-size:1.5rem; font-weight:800; color:#12456b; margin:6px 0 10px; }
+.step-d{ font-size:.98rem; line-height:1.55; color:#37474f; }
+.step-tech{ margin-top:10px; font-size:.82rem; color:#1976d2; font-weight:700; }
+
+/* ---------- pipeline ---------- */
+.pipe{ display:flex; align-items:stretch; justify-content:center; gap:6px; margin:14px 0; }
+.pipe-col{ flex:1; border-radius:12px; padding:14px 12px; }
+.pipe-edge{ background:rgba(227,242,253,.85); border:2px solid rgba(21,101,192,.4); }
+.pipe-cloud{ background:rgba(232,245,233,.85); border:2px solid rgba(46,125,50,.4); }
+.pipe-head{ text-align:center; font-weight:800; font-size:1.05rem; margin-bottom:10px; }
+.pipe-edge .pipe-head{ color:#1565c0; }
+.pipe-cloud .pipe-head{ color:#2e7d32; }
+.pipe-item{ background:#fff; border-radius:7px; padding:8px 10px; margin-bottom:7px;
+  font-size:.88rem; color:#37474f; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+.pipe-item b{ color:#12456b; }
+.pipe-sep{ display:flex; align-items:center; font-size:1.8rem; color:#1565c0; font-weight:800; }
+
+/* ---------- table ---------- */
+table.cmp{ width:100%; border-collapse:collapse; font-size:.98rem; margin:12px 0; }
+table.cmp th, table.cmp td{ border:1px solid rgba(21,101,192,.25); padding:11px 13px; text-align:left; }
+table.cmp th{ background:rgba(21,101,192,.10); color:#12456b; font-weight:800; }
+table.cmp td.ours{ background:rgba(232,245,233,.7); font-weight:700; color:#1b5e20; }
+
+/* ---------- hardware ---------- */
+.hw{ display:grid; grid-template-columns:1.5fr 1fr; gap:18px; flex:1; min-height:0; align-items:stretch; }
+.hw-img{ background:rgba(227,242,253,.5); border:2px solid rgba(21,101,192,.35);
+  border-radius:12px; display:flex; align-items:center; justify-content:center;
+  overflow:hidden; min-height:0; height:100%; }
+.hw-img img{ width:100%; height:100%; object-fit:contain; }
+.hw-list{ display:flex; flex-direction:column; justify-content:space-between; height:100%; gap:4px; }
+.hw-item{ background:#fff; border-left:4px solid #1565c0; border-radius:6px;
+  padding:9px 12px; box-shadow:0 1px 4px rgba(0,0,0,.07); }
+.hw-name{ font-size:.94rem; font-weight:800; color:#1565c0; }
+.hw-desc{ font-size:.82rem; color:#546e7a; margin-top:2px; }
+.hw-arrow{ text-align:center; color:#1565c0; font-size:1.15rem; font-weight:800; line-height:1; }
+.hw-flow{ display:flex; align-items:center; justify-content:center; gap:5px;
+  padding:9px; background:rgba(227,242,253,.8); border-radius:8px; margin-top:auto; flex-wrap:wrap; }
+.hw-flow span{ background:#fff; padding:6px 9px; border-radius:5px;
+  font-weight:700; color:#1565c0; font-size:.76rem; }
+.hw-flow i{ color:#1565c0; font-style:normal; }
+
+/* ---------- demo ---------- */
+.demo-big{ text-align:center; font-size:2.6rem; font-weight:800; color:#12456b; margin:14px 0; }
+.demo-grid{ display:grid; grid-template-columns:1fr auto 1fr; gap:22px; margin-top:14px; align-items:stretch; }
+.demo-divider{ width:1px; background:rgba(21,101,192,.15); }
+.demo-col{ display:flex; flex-direction:column; height:100%; }
+.demo-col-head{ text-align:center; font-size:1.05rem; font-weight:800; color:#1565c0;
+  padding-bottom:8px; margin-bottom:14px; border-bottom:2px solid rgba(21,101,192,.15); }
+.demo-col-body{ flex:1; display:flex; flex-direction:column; justify-content:center; }
+.demo-seq{ display:flex; flex-direction:column; gap:10px; }
+
+/* 모든 박스 공통 규격 — 크기·패딩·둥글기 완전 통일, 위계는 색상·굵기로만 구분 */
+.demo-row{ background:#fff; border:2px solid rgba(21,101,192,.2); border-radius:8px;
+  padding:13px 16px; font-size:1rem; font-weight:600; color:#78909c; text-align:center; }
+.demo-row.wait{ border-style:dashed; border-color:rgba(21,101,192,.4); }
+
+/* 결과 단계: 강조색 배경·테두리·굵은 텍스트 (크기는 동일) */
+.demo-row.result{ background:rgba(21,101,192,.09); border-color:#1565c0;
+  color:#12456b; font-weight:800; }
+
+/* 화살표: 기본은 낮은 명도, 결과로 진입하는 화살표만 강조 (크기는 동일) */
+.demo-arrow{ text-align:center; color:#b0bec5; font-size:.9rem; }
+.demo-arrow.hl{ color:#1565c0; font-weight:800; }
+
+/* 캡션: 박스 없이 가장 낮은 명도 */
+.demo-caption{ text-align:center; font-size:.78rem; color:#90a4ae; font-weight:500; margin-top:10px; }
+
+/* ---------- voice sample ---------- */
+.voice{ background:rgba(232,245,233,.85); border-left:5px solid #43a047;
+  border-radius:8px; padding:16px 20px; font-size:1.12rem; color:#1b5e20;
+  line-height:1.65; font-weight:600; display:flex; flex-direction:column; justify-content:center; }
+.datachip{ font-family:'Courier New',monospace; background:rgba(21,101,192,.08);
+  border:1px solid rgba(21,101,192,.25); border-radius:6px; padding:8px 12px;
+  font-size:.74rem; color:#12456b; line-height:1.4; }
+
+/* ---------- reliability ---------- */
+.rel{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:8px; }
+.rel-item{ background:#fff; border-radius:10px; padding:14px 16px;
+  border:1px solid rgba(21,101,192,.28); box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.rel-when{ font-size:.85rem; color:#c62828; font-weight:800; }
+.rel-then{ font-size:1rem; color:#1b5e20; font-weight:700; margin-top:5px; line-height:1.45; }
+
+/* ---------- closing ---------- */
+.final-big{ text-align:center; font-size:2.9rem; font-weight:800; color:#1565c0; margin:20px 0; }
+.final-sub{ text-align:center; font-size:1.35rem; color:#3d566e; line-height:1.7; }
+
+/* ---------- differentiation (분할 후 1장 1주제, 2×2 그리드) ---------- */
+.diff-quad{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:16px; flex:1; min-height:0; }
+
+/* 페이지 제목 부제: 메인 제목보다 확실히 작게, 낮은 명도 */
+.diff-title-sub{ font-size:.95rem; color:#6b8299; font-weight:600; text-align:center; margin-bottom:12px; }
+
+.strength-item{ display:flex; flex-direction:column; justify-content:center; padding:16px 20px;
+  border-radius:12px; background:rgba(255,255,255,.9); border:2px solid rgba(21,101,192,.16);
+  box-shadow:0 2px 8px rgba(0,0,0,.04); }
+.strength-item.hl{ background:rgba(21,101,192,.06); border-color:#1565c0; border-left:5px solid #1565c0; }
+.strength-name{ font-size:1.05rem; font-weight:800; color:#12456b; line-height:1.3; margin-bottom:6px; }
+.strength-desc{ font-size:.85rem; line-height:1.42; color:#546e7a; font-weight:500; }
+
+/* 하단 태그 라인: 보조 설명, 가장 작은 폰트 */
+.diff-tagline{ font-size:.76rem; color:#78909c; text-align:center; font-weight:600;
+  border-top:1px solid rgba(21,101,192,.15); padding-top:10px; margin-top:auto; }
+
+/* ---------- future work (slide 10) ---------- */
+.future-hero{ background:linear-gradient(90deg, rgba(21,101,192,.12) 0%, rgba(21,101,192,.04) 100%);
+  border-left:4px solid #1565c0; border-radius:6px; padding:5px 10px; margin-bottom:6px;
+  font-size:.80rem; color:#12456b; font-weight:700; line-height:1.35; }
+
+.future-arch{ display:flex; flex-direction:column; gap:4px; background:rgba(255,255,255,.95);
+  border:2px solid rgba(21,101,192,.25); border-radius:8px; padding:6px 10px; margin-bottom:6px;
+  box-shadow:0 2px 6px rgba(0,0,0,.04); }
+.future-arch-card{ border-radius:5px; padding:4px 6px; text-align:center; }
+.future-arch-card.plan{ background:rgba(227,242,253,.9); border:1.5px dashed #1565c0; }
+.future-arch-title{ font-size:.74rem; font-weight:800; color:#12456b; }
+.future-arch-base{ background:rgba(18,69,107,.08); border:1.5px solid rgba(18,69,107,.3);
+  border-radius:5px; padding:4px 8px; text-align:center; font-size:.74rem; font-weight:800; color:#12456b; }
+
+.future-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; flex:1; min-height:0; }
+.future-card{ background:rgba(255,255,255,.96); border:2px solid rgba(21,101,192,.22);
+  border-radius:10px; padding:9px 11px; display:flex; flex-direction:column; gap:5px;
+  box-shadow:0 3px 10px rgba(0,0,0,.05); min-height:0; justify-content:space-between; }
+.future-card-head{ display:flex; align-items:center; justify-content:space-between;
+  border-bottom:2px solid rgba(21,101,192,.15); padding-bottom:3px; }
+.future-card-title{ font-size:.90rem; font-weight:800; color:#1565c0; }
+.future-tag{ font-size:.66rem; background:rgba(21,101,192,.12); color:#1565c0;
+  padding:2px 5px; border-radius:3px; font-weight:700; }
+
+.future-subhead{ font-size:.76rem; font-weight:800; color:#2c3e50;
+  display:flex; align-items:center; gap:4px; }
+.future-subhead::before{ content:''; display:inline-block; width:3px; height:9px; background:#1565c0; border-radius:2px; }
+
+.future-bullets{ list-style:none; display:flex; flex-direction:column; gap:2px; }
+.future-bullets li{ font-size:.71rem; line-height:1.28; color:#455a64; position:relative; padding-left:8px; }
+.future-bullets li::before{ content:'·'; position:absolute; left:1px; font-weight:800; color:#1565c0; }
+.future-bullets li b{ color:#12456b; }
+
+/* 소형 캡션 문구 (카드 내 원칙/보조 설명 한 줄) */
+.diff-text{ font-size:.72rem; line-height:1.35; font-weight:600; }
+.diff-text b{ color:#12456b; }
+
+/* 세로형 흐름 (슬라이드 11: 제품별 단계 카드 + 화살표를 위에서 아래로) */
+.future-flow{ display:flex; flex-direction:column; gap:4px; }
+
+.future-footer{ background:rgba(18,69,107,.08); border:1.5px solid rgba(18,69,107,.25);
+  border-radius:6px; padding:6px 12px; margin-top:5px; text-align:center; }
+.future-footer-text{ font-size:.84rem; font-weight:800; color:#12456b; }
+
+/* 11번 슬라이드 3단계 구조용 스타일 */
+.problem-section-header{ font-size:.88rem; font-weight:800; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
+.problem-stat-big{ font-size:2.4rem; font-weight:900; line-height:1; letter-spacing:-1px; }
+.problem-stat-sub{ font-size:1.1rem; font-weight:800; margin-top:4px; }
+.problem-contrast-box{ padding:14px 18px; text-align:center; }
+.problem-contrast-main{ font-size:1.15rem; font-weight:800; line-height:1.6; margin-bottom:8px; }
+.problem-card-red{ background:rgba(255,235,238,.95); border:2px solid rgba(198,40,40,.4); border-radius:10px; padding:14px 16px; box-shadow:0 2px 8px rgba(198,40,40,.12); }
+
+/* ---------- speaker notes ---------- */
+.notes{ display:none; position:fixed; left:0; right:0; bottom:0; max-height:44vh; overflow-y:auto;
+  background:rgba(18,28,40,.96); color:#e8f1fb; padding:20px 34px; font-size:1rem;
+  line-height:1.75; z-index:2000; border-top:3px solid #1565c0; }
+body.notes-on .slide.active .notes{ display:block; }
+.notes b{ color:#7fd3ff; }
+.notes .cue{ color:#ffd479; font-weight:700; }
+
+.progress-info{ position:fixed; bottom:16px; right:26px; font-size:.95rem;
+  color:rgba(44,62,80,.45); font-weight:700; z-index:1000; }
+.nav-hint{ position:fixed; bottom:16px; left:26px; font-size:.78rem;
+  color:rgba(44,62,80,.45); z-index:1000; }
+
+@media (max-width:1200px){
+  .slide-title{ font-size:2.2rem; }
+  .hw{ grid-template-columns:1fr; }
+  .grid-2,.grid-3,.steps,.rel{ grid-template-columns:1fr; }
+  .ba{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="presentation-container">
+
+<!-- ============ 1. TITLE ============ -->
+<div class="slide active" id="s1" style="position:relative; overflow:hidden; background:#071526;">
+  
+  <!-- 배경 전체 사진 (우측 집중 배치) -->
+  <div style="position:absolute; inset:0; background:url('assets/cover.png') no-repeat right center / cover; z-index:1;"></div>
+
+  <!-- 좌측 딥 다크/네이비 그라데이션 오버레이 (레퍼런스 스타일) -->
+  <div style="position:absolute; inset:0; background:linear-gradient(90deg, #061220 0%, rgba(6,18,32,0.96) 38%, rgba(6,18,32,0.78) 58%, rgba(6,18,32,0.25) 82%, rgba(6,18,32,0.05) 100%), linear-gradient(180deg, rgba(6,18,32,0.4) 0%, transparent 20%, transparent 80%, rgba(6,18,32,0.6) 100%); z-index:2;"></div>
+
+  <!-- 전면 콘텐츠 -->
+  <div class="slide-content" style="position:relative; z-index:3; padding:54px 72px; height:100%; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box;">
+    
+    <!-- 상단: 프로젝트 태그 -->
+    <div>
+      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(33,150,243,0.15); border:1px solid rgba(100,181,246,0.35); padding:6px 14px; border-radius:20px; color:#90caf9; font-size:.84rem; font-weight:700; letter-spacing:1px;">
+        <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#4fc3f7;"></span>
+        2026 피지컬 AI 시스템 개발 프로젝트 · IoT가전
+      </div>
+    </div>
+
+    <!-- 중단: 메인 타이틀 & 핵심 카피 -->
+    <div style="max-width:680px; margin:20px 0;">
+      <div style="font-size:1.2rem; font-weight:600; color:#b0bec5; margin-bottom:8px; letter-spacing:.5px;">
+        사람이 머무는 공간을 다시 보다
+      </div>
+      
+      <div style="font-size:4.2rem; font-weight:900; color:#ffffff; line-height:1.12; margin-bottom:16px; letter-spacing:-1px; text-shadow:0 4px 24px rgba(0,0,0,0.6);">
+        AI 스마트 현관
+      </div>
+      
+      <div style="font-size:1.75rem; font-weight:600; color:#eceff1; line-height:1.35; margin-bottom:26px;">
+        나가기 전 <span style="color:#4fc3f7; font-weight:900; text-shadow:0 0 20px rgba(79,195,247,0.4);">1분을 다시 설계</span>했습니다
+      </div>
+
+      <!-- 핵심 기능 태그 -->
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <span style="background:rgba(255,255,255,0.1); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:.82rem; font-weight:700; padding:6px 14px; border-radius:8px;">
+          💡 존재 감지 스마트 조명
+        </span>
+        <span style="background:rgba(255,255,255,0.1); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:.82rem; font-weight:700; padding:6px 14px; border-radius:8px;">
+          ⛅ 1초 외출 날씨 가이드
+        </span>
+      </div>
+    </div>
+
+    <!-- 하단: 팀 브랜드 -->
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.15); padding-top:18px;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="font-size:2.4rem; font-weight:900; color:#ffffff; letter-spacing:3px; text-shadow:0 2px 10px rgba(0,0,0,0.5);">PSEE</span>
+        <span style="font-size:.82rem; color:#90a4ae; font-weight:600; line-height:1.35;">
+          Physical System & Edge Engineering<br>
+          <span style="color:#78909c;">AI Smart Entrance Project</span>
+        </span>
+      </div>
+
+      <div style="font-size:.76rem; color:#b0bec5; font-weight:600; background:rgba(0,0,0,0.4); padding:5px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.1);">
+        Smart Home · Presence Sensing System
+      </div>
+    </div>
+
+  </div>
+  <div class="notes">
+    <span class="cue">[무대 중앙, 청중과 눈 맞춤 후 시작]</span><br>
+    안녕하십니까. 저희는 집에서 가장 마지막에 머무는 공간, <b>현관</b>을 다시 설계한 <b>PSEE</b>입니다.
+    오늘 소개해 드릴 것은 <b>AI 스마트 현관</b>입니다.
+  </div>
+</div>
+
+<!-- ============ 2. HOOK / AD VIDEO ============ -->
+<div class="slide" id="s2">
+  <div class="slide-content" style="text-align:center;">
+    <div class="eyebrow">Hook</div>
+    <div class="slide-title">다들 이런 경험 있으신가요?</div>
+
+    <div class="video-container">
+      <video id="promo-video-1" controls playsinline>
+        <source src="assets/날씨.mp4" type="video/mp4">
+      </video>
+      <div class="video-placeholder" id="video-placeholder-1">
+        <div class="video-placeholder-icon">🎬</div>
+        <div class="video-placeholder-text">날씨 확인 상황 영상</div>
+        <div class="video-placeholder-subtext">assets/날씨.mp4 파일</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <span class="cue">[영상 재생 시작]</span><br>
+    먼저 짧은 상황 영상 하나 보시겠습니다.
+  </div>
+</div>
+
+<!-- ============ 3. HOOK / AD VIDEO (REPEAT) ============ -->
+<div class="slide" id="s3">
+  <div class="slide-content" style="text-align:center;">
+    <div class="eyebrow">Hook</div>
+    <div class="slide-title">다들 이런 경험 있으신가요?</div>
+
+    <div class="video-container">
+      <video id="promo-video-2" controls playsinline>
+        <source src="assets/택배.mp4" type="video/mp4">
+      </video>
+      <div class="video-placeholder" id="video-placeholder-2">
+        <div class="video-placeholder-icon">🎬</div>
+        <div class="video-placeholder-text">택배 상황 영상</div>
+        <div class="video-placeholder-subtext">assets/택배.mp4 파일</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <span class="cue">[영상 재생 시작]</span><br>
+    먼저 짧은 상황 영상 하나 보시겠습니다.
+  </div>
+</div>
+
+<!-- ============ 4. PROBLEM ============ -->
+<div class="slide" id="s4">
+  <div class="slide-content">
+    <div class="eyebrow">Problem</div>
+    <div class="slide-title">불편의 원인은 <span class="hl-red">기술의 전제</span>에 있었습니다</div>
+
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card card-bad">
+        <div class="card-num">01</div>
+        <div class="card-title">날씨 — 5단계를 요구합니다</div>
+        <div class="card-desc">
+          폰 꺼내기 → 잠금 해제 → 앱 찾기 → 실행 → 읽기.<br><br>
+          <b>다섯 번의 행동</b>이 필요합니다. 그런데 그 순간 손에는
+          가방과 열쇠와 신발이 들려 있습니다.<br><br>
+          <span class="hl-red">그래서 확인하지 않고 그냥 나갑니다.</span>
+        </div>
+      </div>
+
+      <div class="card card-bad">
+        <div class="card-num">02</div>
+        <div class="card-title">조명 — 움직임을 봅니다</div>
+        <div class="card-desc">
+          기존 현관등은 대부분 <b>PIR(적외선 동작감지)</b> 방식입니다.<br><br>
+          그런데 <b>신발끈을 묶을 때, 현관에서 택배를 뜯을 때</b> —
+          손끝만 움직일 뿐 몸은 멈춰 있어 기존 센서는 사람이 없다고 판단합니다.<br><br>
+          <span class="hl-red">전제가 틀렸습니다. "움직임 = 사람"이 아닙니다.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    저희는 이 불편을 두 가지로 정의했습니다.<br>
+    <b>첫째, 날씨입니다.</b> 외출 직전 날씨를 보려면 다섯 단계를 거쳐야 합니다.
+    그런데 그 순간 우리 손은 비어 있지 않습니다. 그래서 그냥 나갑니다.<br>
+    <b>둘째, 조명입니다.</b> 기존 현관등은 대부분 PIR, 즉 움직임을 봅니다.
+    그런데 신발끈을 묶을 때, 현관에서 택배를 뜯을 때는 손끝만 움직일 뿐 몸은 멈춰 있어, 기존 센서는 사람이 없다고 판단합니다.
+    손을 휘저어 다시 켜본 경험, 다들 있으실 겁니다.
+    <b>전제가 틀린 겁니다. 움직임이 곧 사람은 아닙니다.</b>
+  </div>
+</div>
+
+<!-- ============ 5. BEFORE / AFTER ============ -->
+<div class="slide" id="s5">
+  <div class="slide-content">
+    <div class="eyebrow">Before → After</div>
+    <div class="slide-title"><span class="hl-red">전제</span>를 바꾸면 <span class="hl-green">결과</span>가 바뀝니다</div>
+
+    <div class="ba">
+      <div class="card card-bad" style="text-align:center;">
+        <div class="ba-metric hl-red">5단계</div>
+        <div class="ba-label">폰 꺼내기 → … → 읽기</div>
+      </div>
+      <div class="ba-arrow">→</div>
+      <div class="card card-good" style="text-align:center;">
+        <div class="ba-metric hl-green">1단계</div>
+        <div class="ba-label">버튼 한 번</div>
+      </div>
+    </div>
+
+    <div class="ba">
+      <div class="card card-bad" style="text-align:center;">
+        <div class="ba-metric hl-red">움직임 감지</div>
+        <div class="ba-label">타이머 만료 시 소등</div>
+      </div>
+      <div class="ba-arrow">→</div>
+      <div class="card card-good" style="text-align:center;">
+        <div class="ba-metric hl-green">존재 감지</div>
+        <div class="ba-label">사람이 있는 동안 계속 점등</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    저희 목표는 단순합니다.<br>
+    날씨는 <b>다섯 단계를 한 단계로</b> 줄이고,<br>
+    조명은 <b>'움직임'이 아니라 '존재'</b>를 보게 만드는 것.<br>
+    버튼 하나로 간편하게 답을 듣는 겁니다.
+  </div>
+</div>
+
+<!-- ============ 6. LIVE DEMO ============ -->
+<div class="slide" id="s6">
+  <div class="slide-content">
+    <div class="eyebrow">Live Demo</div>
+    <div class="demo-big">직접 확인해 보겠습니다</div>
+
+    <div class="demo-grid">
+      <div class="demo-col">
+        <div class="demo-col-head">① AI 날씨비서</div>
+        <div class="demo-col-body">
+          <div class="demo-seq">
+            <div class="demo-row">버튼 1회</div>
+            <div class="demo-arrow">↓</div>
+            <div class="demo-row">기상청 실황 조회</div>
+            <div class="demo-arrow">↓</div>
+            <div class="demo-row">AI 판단</div>
+            <div class="demo-arrow hl">↓</div>
+            <div class="demo-row result">음성 안내 재생</div>
+          </div>
+          <div class="demo-caption">고정된 안내가 아닙니다. 방금 받아온 실제 데이터입니다.</div>
+        </div>
+      </div>
+
+      <div class="demo-divider"></div>
+
+      <div class="demo-col">
+        <div class="demo-col-head">② 스마트 센서등</div>
+        <div class="demo-col-body">
+          <div class="demo-seq">
+            <div class="demo-row">앞에 선다</div>
+            <div class="demo-arrow">↓</div>
+            <div class="demo-row result">즉시 점등</div>
+            <div class="demo-arrow">↓</div>
+            <div class="demo-row wait">가만히 <b style="color:#1565c0;">30초</b>간 정지</div>
+            <div class="demo-arrow hl">↓</div>
+            <div class="demo-row result">꺼지지 않는다</div>
+          </div>
+          <div class="demo-caption">자리를 뜨면 소등됩니다</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <span class="cue">[제품 앞으로 이동. 청중이 볼 수 있는 각도 확보]</span><br>
+    백문이 불여일견입니다. 직접 보여 드리겠습니다.<br>
+    <b>먼저 날씨입니다.</b> 버튼을 한 번 누르겠습니다.
+    <span class="cue">[버튼 누르고 음성이 끝날 때까지 말하지 않는다]</span><br>
+    지금 들으신 건 <b>미리 정해진 안내가 아니라, 방금 기상청에서 받아온 실제 데이터로 조합한 것</b>입니다.<br>
+    <b>다음은 조명입니다.</b> 손을 대지 않고 앞에 서 있기만 하겠습니다. …켜졌습니다.
+    이제 <b>가만히</b> 서 있겠습니다. 삼십 초가 지나도 꺼지지 않습니다.
+    이제 제가 자리를 비우겠습니다. …꺼집니다.
+  </div>
+</div>
+
+<!-- ============ 7. WEATHER HW ============ -->
+<div class="slide" id="s7">
+  <div class="slide-content">
+    <div class="eyebrow">Subsystem 1</div>
+    <div class="slide-title">AI 날씨비서 — Hardware</div>
+
+    <div class="hw">
+      <div class="hw-img">
+        <img src="assets/날씨 하드웨어 회로도 사진.png" alt="AI 날씨비서 Circuit">
+      </div>
+      <div class="hw-list">
+        <div class="hw-item"><div class="hw-name">Button Switch</div><div class="hw-desc">사용자 요청</div></div>
+        <div class="hw-arrow">↓</div>
+        <div class="hw-item"><div class="hw-name">XIAO ESP32-C6</div><div class="hw-desc">입력 처리 · Wi-Fi 통신</div></div>
+        <div class="hw-arrow">↓</div>
+        <div class="hw-item"><div class="hw-name">DFPlayer Mini</div><div class="hw-desc">SD카드 저장 음성 재생</div></div>
+        <div class="hw-arrow">↓</div>
+        <div class="hw-item"><div class="hw-name">3W Speaker</div><div class="hw-desc">음성 출력</div></div>
+
+        <div class="card card-good" style="padding:13px 15px; margin-top:4px;">
+          <div style="font-size:.88rem; font-weight:800; color:#2e7d32; margin-bottom:4px;">실시간 날씨 연동</div>
+          <div style="font-size:.86rem; line-height:1.5; color:#1b5e20;">
+            고정된 안내문이 아닙니다.<br><b>기상청 API 실시간 데이터</b>에 따라 재생할 음성 조각을 선택·조합합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    날씨 쪽입니다. 버튼, ESP32-C6, DFPlayer Mini, 마이크로SD, 스피커.<br>
+    SD카드에는 <b>문장 조각과 숫자 음성 43개</b>가 들어 있습니다.
+    "이십삼 점 오"처럼 <b>숫자를 조합해서</b> 어떤 기온이든 말할 수 있게 설계했습니다.<br>
+    부품은 단순합니다. 어려운 건 배선이 아니라 <b>그 다음</b>이었습니다.
+  </div>
+</div>
+
+<!-- ============ 8. SMART LIGHTING HW ============ -->
+<div class="slide" id="s8">
+  <div class="slide-content">
+    <div class="eyebrow">Subsystem 2</div>
+    <div class="slide-title">스마트 센서등 — Hardware</div>
+
+    <div class="hw">
+      <div class="hw-img">
+        <img src="assets/전등 하드웨어 회로도 사진.png" alt="스마트 센서등 Circuit">
+      </div>
+      <div class="hw-list">
+        <div class="hw-item"><div class="hw-name">HLK-LD2410C</div><div class="hw-desc">mmWave 존재 감지</div></div>
+        <div class="hw-arrow">↓</div>
+        <div class="hw-item"><div class="hw-name">XIAO ESP32-C6</div><div class="hw-desc">엣지 판단 로직</div></div>
+        <div class="hw-arrow">↓</div>
+        <div class="hw-item"><div class="hw-name">5V Relay</div><div class="hw-desc">3.3V 신호 호환 · LED 전원 제어</div></div>
+        <div class="hw-arrow">↓</div>
+        <div class="hw-item"><div class="hw-name">5V LED</div><div class="hw-desc">조명 출력</div></div>
+
+        <div class="card card-good" style="padding:13px 15px; margin-top:4px;">
+          <div style="font-size:.88rem; font-weight:800; color:#2e7d32; margin-bottom:4px;">핵심 차이</div>
+          <div style="font-size:.86rem; line-height:1.5; color:#1b5e20;">
+            움직임이 멈춰도 끄지 않습니다.<br><b>존재 신호가 유지되는 동안</b> 켜 둡니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    조명 쪽 하드웨어입니다.
+    mmWave 센서가 존재를 감지하고, ESP32-C6가 판단해 릴레이로 LED를 제어합니다.
+    움직임이 멈춰도 끄지 않고, <b>존재 신호가 유지되는 동안 조명을 계속 켜 둡니다.</b>
+  </div>
+</div>
+
+<!-- ============ 9. FUTURE DIRECTION 1/2 — CARE & WELFARE ============ -->
+<div class="slide" id="s9">
+  <div class="slide-content" style="padding:22px 42px; display:flex; flex-direction:column; justify-content:space-between; gap:14px;">
+    <div>
+      <div class="eyebrow" style="margin-bottom:3px;">Future Direction 1 / 2</div>
+      <div class="slide-title" style="font-size:2.05rem; margin-bottom:2px;">초고령사회, 그 순간이 아니라 지나간 날들을 봅니다</div>
+    </div>
+
+    <!-- [상단] 통계 & 배경 (부산과 전국의 미래) -->
+    <div style="background:rgba(255,255,255,.96); border:2px solid rgba(21,101,192,.22); border-radius:12px; padding:10px 18px; box-shadow:0 2px 8px rgba(0,0,0,.04);">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1.8fr; gap:16px; align-items:center;">
+        <div style="text-align:center; border-right:1px dashed rgba(21,101,192,.25); padding-right:12px;">
+          <div style="font-size:.74rem; font-weight:700; color:#546e7a;">대한민국 · 2024.12 초고령사회</div>
+          <div style="font-size:1.35rem; font-weight:900; color:#12456b; line-height:1.15; margin:2px 0;">20%+</div>
+          <div style="font-size:.66rem; color:#78909c;">65세 이상 인구 비중 지속 증가</div>
+        </div>
+        <div style="text-align:center; border-right:1px dashed rgba(21,101,192,.25); padding-right:12px;">
+          <div style="font-size:.74rem; font-weight:700; color:#c62828;">부산광역시 (특·광역시 최초)</div>
+          <div style="font-size:1.35rem; font-weight:900; color:#c62828; line-height:1.15; margin:2px 0;">23.9%</div>
+          <div style="font-size:.66rem; color:#78909c;">2030년 29.7% 전망 (최고 속도)</div>
+        </div>
+        <div style="background:rgba(21,101,192,.07); border:1px solid rgba(21,101,192,.2); border-radius:8px; padding:8px 14px; text-align:center;">
+          <div style="font-size:.82rem; font-weight:800; color:#12456b;">
+            "부산의 현재는 전국의 가까운 미래입니다"
+          </div>
+          <div style="font-size:.70rem; color:#546e7a; margin-top:2px;">
+            지금 필요한 비침해적 돌봄 해법이 여기서 먼저 요구됩니다 (출처: 통계청·부산시)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- [중단] 대형 3단계 솔루션 카드 (기록 · 판단 · 알림) -->
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; flex:1; min-height:0;">
+      
+      <!-- 1단계: 기록 -->
+      <div style="background:rgba(255,255,255,.98); border:2.5px solid rgba(21,101,192,.35); border-radius:14px; padding:20px 18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 12px rgba(0,0,0,.04);">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="background:rgba(21,101,192,.1); color:#1565c0; font-size:.78rem; font-weight:800; padding:4px 10px; border-radius:6px;">STEP 1</span>
+            <span style="font-size:2.0rem; line-height:1;">💡+🔘</span>
+          </div>
+          <div style="font-size:1.15rem; font-weight:900; color:#12456b; margin-bottom:4px;">① 기록 (Data)</div>
+          <div style="font-size:.86rem; font-weight:800; color:#1565c0; margin-bottom:10px;">조명 사용 + 날씨 버튼 사용</div>
+          <div style="font-size:.78rem; color:#37474f; line-height:1.55;">
+            평소 어르신의 <b>조명 사용 여부 + 날씨 버튼 사용 여부</b>를 생활 신호로 기록합니다.<br><br>
+            <span style="color:#1565c0; font-weight:700;">→ 별도 센서로 감시하는 게 아니라, 평소 제품을 사용하는 행동 자체가 데이터가 되는 구조</span>
+          </div>
+        </div>
+        <div style="background:rgba(21,101,192,.06); border-radius:8px; padding:7px 10px; margin-top:10px; font-size:.72rem; font-weight:700; color:#12456b; text-align:center;">
+          감시가 아닌 일상 행동의 데이터화
+        </div>
+      </div>
+
+      <!-- 2단계: 판단 -->
+      <div style="background:rgba(255,248,225,.98); border:2.5px solid rgba(245,124,0,.5); border-radius:14px; padding:20px 18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 12px rgba(245,124,0,.06);">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="background:rgba(245,124,0,.15); color:#e65100; font-size:.78rem; font-weight:800; padding:4px 10px; border-radius:6px;">STEP 2</span>
+            <span style="font-size:2.0rem; line-height:1;">⚠️</span>
+          </div>
+          <div style="font-size:1.15rem; font-weight:900; color:#bf360c; margin-bottom:4px;">② 판단 (Logic)</div>
+          <div style="font-size:.86rem; font-weight:800; color:#e65100; margin-bottom:10px;">두 신호의 동시 부재</div>
+          <div style="font-size:.78rem; color:#37474f; line-height:1.55;">
+            일정 시간 동안 <b>조명도 켜지지 않고 + 날씨 버튼도 사용되지 않으면</b>,<br><br>
+            <span style="color:#c62828; font-weight:700;">→ 두 종류의 생활 신호가 동시에 사라진 것으로 보고 ‘안부 확인이 필요할 가능성’을 판단</span><br>
+            <span style="font-size:.70rem; color:#78909c;">(사고나 응급상황으로 확정하는 것이 아님)</span>
+          </div>
+        </div>
+        <div style="background:rgba(245,124,0,.1); border-radius:8px; padding:7px 10px; margin-top:10px; font-size:.72rem; font-weight:800; color:#c62828; text-align:center;">
+          두 생활 신호 동시 부재 시 이상 감지
+        </div>
+      </div>
+
+      <!-- 3단계: 알림 -->
+      <div style="background:rgba(255,255,255,.98); border:2.5px solid rgba(46,125,50,.45); border-radius:14px; padding:20px 18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 12px rgba(0,0,0,.04);">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="background:rgba(46,125,50,.12); color:#2e7d32; font-size:.78rem; font-weight:800; padding:4px 10px; border-radius:6px;">STEP 3</span>
+            <span style="font-size:2.0rem; line-height:1;">📱+🏢</span>
+          </div>
+          <div style="font-size:1.15rem; font-weight:900; color:#1b5e20; margin-bottom:4px;">③ 알림 (Link)</div>
+          <div style="font-size:.86rem; font-weight:800; color:#2e7d32; margin-bottom:10px;">보호자 + 돌봄·복지 담당자</div>
+          <div style="font-size:.78rem; color:#37474f; line-height:1.55;">
+            그 신호를 <b>보호자 또는 돌봄·복지 담당자</b>에게 전달합니다.<br><br>
+            <span style="color:#2e7d32; font-weight:700;">→ 담당자가 전화하거나 방문하는 식으로 실제 안부를 확인하도록 연결하는 구조</span>
+          </div>
+        </div>
+        <div style="background:rgba(46,125,50,.08); border-radius:8px; padding:7px 10px; margin-top:10px; font-size:.72rem; font-weight:800; color:#1b5e20; text-align:center;">
+          전화·방문을 통한 실제 안부 확인 연결
+        </div>
+      </div>
+
+    </div>
+
+    <!-- [하단] 핵심 요약 흐름 배너 -->
+    <div style="background:rgba(21,101,192,.08); border:2px solid rgba(21,101,192,.32); border-radius:10px; padding:10px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px;">
+      <div style="font-size:.86rem; font-weight:800; color:#12456b; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+        <span>일상 행동 자연 기록</span>
+        <span style="color:#1565c0;">→</span>
+        <span>생활 신호 동시 부재 시 이상 징후 판단</span>
+        <span style="color:#1565c0;">→</span>
+        <span class="hl">사람에게 알려 실제 안부 확인</span>
+      </div>
+      <div style="display:flex; gap:6px; font-size:.68rem; color:#1565c0; font-weight:700; white-space:nowrap;">
+        <span style="background:#fff; padding:3px 7px; border-radius:4px; border:1px solid rgba(21,101,192,.22);">비침해적 일상 돌봄</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="notes">
+    <b>마지막으로 저희가 바라보는 첫 번째 확장 방향, 돌봄 영역입니다.</b><br>
+    대한민국은 2024년 12월 초고령사회에 진입했고, 부산은 이미 23.9%로 앞서 있습니다.<br>
+    <b>① 기록:</b> 평소 어르신의 조명 사용과 날씨 버튼 사용을 생활 신호로 기록합니다. 별도 센서로 감시하는 게 아니라 평소 사용하는 행동 자체가 데이터가 됩니다.<br>
+    <b>② 판단:</b> 일정 시간 동안 조명도 켜지지 않고 날씨 버튼도 사용되지 않으면, 두 생활 신호가 동시에 사라진 것으로 보고 '안부 확인이 필요할 가능성'을 판단합니다. 사고로 확정하는 것이 아니라 확인이 필요한 신호로 봅니다.<br>
+    <b>③ 알림:</b> 그 신호를 보호자나 돌봄·복지 담당자에게 전달해, 전화나 방문으로 실제 안부를 확인하도록 연결합니다.<br>
+    즉, <b>일상 행동을 기록해 신호 부재 시 이상을 판단하고, 사람에게 알려 실제 안부를 확인</b>하는 구조입니다.
+  </div>
+</div>
+
+<!-- ============ 10. HOOK / VIDEO (STALKING & NIGHT CORRIDOR) ============ -->
+<div class="slide" id="s10">
+  <div class="slide-content" style="text-align:center;">
+    <div class="eyebrow">Future Direction 2 / 2</div>
+    <div class="slide-title">향후 발전 계획 — 더 안전한 공간으로</div>
+
+    <div class="video-container">
+      <video id="promo-video-3" controls playsinline>
+        <source src="assets/스토킹.mp4" type="video/mp4">
+      </video>
+      <div class="video-placeholder" id="video-placeholder-3">
+        <div class="video-placeholder-icon">🎬</div>
+        <div class="video-placeholder-text">야간 복도 상황 영상</div>
+        <div class="video-placeholder-subtext">assets/스토킹.mp4 파일</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <span class="cue">[영상 재생 시작]</span><br>
+    어두운 야간 복도와 관련된 상황 영상 하나 보시겠습니다.
+  </div>
+</div>
+
+<!-- ============ 11. FUTURE DIRECTION 2/2 — SAFETY INFRASTRUCTURE ============ -->
+<div class="slide" id="s11">
+  <div class="slide-content" style="padding:16px 42px; display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
+    
+    <!-- [상단 헤더 영역] -->
+    <div style="text-align:center;">
+      <div class="eyebrow" style="margin-bottom:2px; font-size:.88rem; letter-spacing:2px;">향후 발전 방향 2 / 2</div>
+      <div class="slide-title" style="font-size:2.2rem; font-weight:900; color:#0d2b45; margin-bottom:2px;">
+        향후 발전 방향 — 더 안전한 공간으로
+      </div>
+      <div style="font-size:1.05rem; font-weight:800; color:#1565c0; margin-bottom:8px;">
+        "조명을 넘어, 공간 안전을 돕는 인프라"
+      </div>
+      
+      <!-- 상단 다크 블루 배너 -->
+      <div style="display:inline-flex; align-items:center; gap:8px; background:#0d2b45; color:#ffffff; border-radius:20px; padding:6px 20px; font-size:.82rem; font-weight:700; box-shadow:0 3px 8px rgba(13,43,69,0.2);">
+        <span style="color:#64b5f6; font-size:.9rem;">🛡️</span>
+        <span>가만히 서 있어도 존재가 감지되어 조명이 유지되므로, 스토커가 어둠 속에 숨어 있기 어렵습니다.</span>
+      </div>
+    </div>
+
+    <!-- [중앙 3단계 플로우 카드 (상황 → 기능 → 효과)] -->
+    <div style="background:#ffffff; border:1.5px solid #d0e1fd; border-radius:14px; padding:14px 20px; box-shadow:0 4px 14px rgba(21,101,192,0.06); display:grid; grid-template-columns:1fr auto 1.3fr auto 1.3fr; gap:14px; align-items:center;">
+      
+      <!-- Step 1: 상황 -->
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="flex:1;">
+          <div style="font-size:1.4rem; color:#1565c0; line-height:1; margin-bottom:4px;">🌙</div>
+          <div style="font-size:1.05rem; font-weight:900; color:#1565c0; margin-bottom:6px;">상황</div>
+          <div style="font-size:.76rem; color:#37474f; line-height:1.45; font-weight:600;">
+            야간 복도와 비상계단은<br>시야 확보가 어려워<br>불안과 위험이 큰 공간입니다.
+          </div>
+        </div>
+        <div style="flex-shrink:0;">
+          <img src="assets/corridor_dark.png" alt="어두운 복도" style="width:115px; height:140px; object-fit:cover; border-radius:8px; border:1px solid rgba(0,0,0,0.08); display:block;">
+        </div>
+      </div>
+
+      <!-- 화살표 1 -->
+      <div style="width:26px; height:26px; border-radius:50%; background:#0d2b45; color:#fff; display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:900;">
+        ›
+      </div>
+
+      <!-- Step 2: 기능 -->
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="flex:1;">
+          <div style="font-size:1.4rem; color:#1565c0; line-height:1; margin-bottom:4px;">👤📡</div>
+          <div style="font-size:1.05rem; font-weight:900; color:#1565c0; margin-bottom:6px;">기능</div>
+          <div style="font-size:.76rem; color:#37474f; line-height:1.45; font-weight:600;">
+            mmWave 센서가<br>사람의 존재를 연속 감지해,<br>사람이 가만히 있어도<br>조명이 꺼지지 않고 유지됩니다.
+          </div>
+        </div>
+        <div style="flex-shrink:0;">
+          <img src="assets/corridor_light.png" alt="밝은 복도" style="width:115px; height:140px; object-fit:cover; border-radius:8px; border:1px solid rgba(0,0,0,0.08); display:block;">
+        </div>
+      </div>
+
+      <!-- 화살표 2 -->
+      <div style="width:26px; height:26px; border-radius:50%; background:#0d2b45; color:#fff; display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:900;">
+        ›
+      </div>
+
+      <!-- Step 3: 효과 -->
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="flex:1;">
+          <div style="font-size:1.4rem; color:#2e7d32; line-height:1; margin-bottom:4px;">🛡️</div>
+          <div style="font-size:1.05rem; font-weight:900; color:#2e7d32; margin-bottom:6px;">효과</div>
+          <div style="font-size:.74rem; color:#37474f; line-height:1.45; font-weight:600;">
+            뒤따라오는 사람이 가만히 숨어 있으려 해도 불이 계속 켜져 있어 어둠 속에 숨기 어렵고, 주변을 더 쉽게 인지할 수 있어 보행 안전과 범죄 예방에 도움을 줄 수 있습니다.
+          </div>
+        </div>
+        <div style="flex-shrink:0; width:55px; height:110px; display:flex; align-items:center; justify-content:center; font-size:2.6rem; color:#2e7d32;">
+          🚶‍♂️🛡️
+        </div>
+      </div>
+
+    </div>
+
+    <!-- [하단 2열 확장 카드] -->
+    <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:14px;">
+      
+      <!-- ① 사회문제 해결 -->
+      <div style="background:#ffffff; border:1.5px solid #ffcdd2; border-radius:12px; padding:12px 18px; display:flex; align-items:center; gap:14px; box-shadow:0 2px 6px rgba(255,0,0,0.03);">
+        <div style="width:48px; height:48px; border-radius:50%; background:#ffebee; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">
+          👥
+        </div>
+        <div>
+          <div style="font-size:.82rem; font-weight:800; color:#d32f2f; margin-bottom:2px;">① 사회문제 해결</div>
+          <div style="font-size:.92rem; font-weight:900; color:#12456b; margin-bottom:2px;">야간 취약 공간의 불안 완화</div>
+          <div style="font-size:.74rem; color:#616161; font-weight:600;">복도·계단 등 어두운 공간에서 시야 확보 지원</div>
+        </div>
+      </div>
+
+      <!-- ② 활용 확대 -->
+      <div style="background:#ffffff; border:1.5px solid #bbdefb; border-radius:12px; padding:12px 18px; display:flex; align-items:center; gap:14px; box-shadow:0 2px 6px rgba(33,150,243,0.03);">
+        <div style="width:48px; height:48px; border-radius:50%; background:#e3f2fd; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">
+          🏢
+        </div>
+        <div>
+          <div style="font-size:.82rem; font-weight:800; color:#1565c0; margin-bottom:2px;">② 활용 확대</div>
+          <div style="font-size:.92rem; font-weight:900; color:#12456b; margin-bottom:2px;">공동주택 · 공공시설로 적용 확장</div>
+          <div style="font-size:.74rem; color:#616161; font-weight:600;">복도, 계단, 출입구 등 다양한 공간에 활용 가능</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- [최하단 확장 배너] -->
+    <div style="background:#e3f2fd; border-radius:10px; padding:9px 18px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="background:#0d2b45; color:#fff; width:20px; height:20px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; font-size:.70rem; font-weight:900;">✔</span>
+        <span style="font-size:.82rem; font-weight:800; color:#0d2b45;">단순 자동 점등을 넘어, 사람이 가만히 있어도 빛을 유지해 어두운 공간의 숨을 틈을 줄이는 안전 인프라로 확장할 수 있습니다.</span>
+      </div>
+      <div style="font-size:1.3rem; flex-shrink:0;">
+        🏙️
+      </div>
+    </div>
+
+  </div>
+  <div class="notes">
+    저희가 만든 기술의 최종적인 발전 방향은 단순히 신발장에 사용하는 것에 그치지 않습니다.<br>
+    사람의 존재를 감지해서 조명을 유지하는 기술을 <b>아파트 복도나 비상계단</b>에 적용할 수 있습니다.<br>
+    예를 들어 늦은 밤 누군가가 뒤따라오는 상황에서도 사람의 존재가 계속 감지되면 <b>조명이 계속 켜져 있게</b> 됩니다.<br>
+    그러면 어두운 공간에서 뒤에 사람이 있다는 사실을 인지하기 쉬워지고, <b>스토킹과 같은 범죄에 대한 예방에도 도움</b>을 줄 수 있습니다.<br>
+    여기서 더 나아가면 이 기술을 개별 제품이 아니라 <b>건축물의 안전 설비로 확대</b>할 수도 있습니다.<br>
+    결국 저희가 만들고 있는 것은 단순히 사람이 오면 켜지는 전등이 아니라, <b>사람의 존재를 감지해서 더 안전한 공간을 만드는 기술</b>입니다.
+  </div>
+</div>
+
+<!-- ============ 12. CLOSING ============ -->
+<div class="slide" id="s12" style="position:relative; overflow:hidden; background:#071526;">
+  
+  <!-- 배경 전체 사진 (1번 슬라이드와 수미상관) -->
+  <div style="position:absolute; inset:0; background:url('assets/cover.png') no-repeat right center / cover; z-index:1;"></div>
+
+  <!-- 딥 네이비 그라데이션 오버레이 -->
+  <div style="position:absolute; inset:0; background:linear-gradient(90deg, #061220 0%, rgba(6,18,32,0.96) 42%, rgba(6,18,32,0.82) 65%, rgba(6,18,32,0.35) 88%, rgba(6,18,32,0.15) 100%), linear-gradient(180deg, rgba(6,18,32,0.4) 0%, transparent 20%, transparent 80%, rgba(6,18,32,0.6) 100%); z-index:2;"></div>
+
+  <!-- 전면 콘텐츠 -->
+  <div class="slide-content" style="position:relative; z-index:3; padding:54px 72px; height:100%; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box;">
+    
+    <!-- 상단: 브랜드 & 프로젝트 태그 -->
+    <div>
+      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(33,150,243,0.15); border:1px solid rgba(100,181,246,0.35); padding:6px 14px; border-radius:20px; color:#90caf9; font-size:.84rem; font-weight:700; letter-spacing:1px;">
+        <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#4fc3f7;"></span>
+        PSEE · Physical AI System Closing
+      </div>
+    </div>
+
+    <!-- 중단: AI 스마트 현관 메인 타이틀 & 수미상관 마무리 -->
+    <div style="max-width:720px; margin:20px 0;">
+      <div style="font-size:1.2rem; font-weight:600; color:#b0bec5; margin-bottom:8px; letter-spacing:.5px;">
+        현관, 집을 나서는 순간의 1분에서
+      </div>
+      
+      <div style="font-size:4.2rem; font-weight:900; color:#ffffff; line-height:1.12; margin-bottom:24px; letter-spacing:-1px; text-shadow:0 4px 24px rgba(0,0,0,0.6);">
+        AI 스마트 현관
+      </div>
+
+      <!-- 수미상관 기능 태그 -->
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <span style="background:rgba(255,255,255,0.1); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:.82rem; font-weight:700; padding:6px 14px; border-radius:8px;">
+          💡 스마트 센서등
+        </span>
+        <span style="background:rgba(255,255,255,0.1); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:.82rem; font-weight:700; padding:6px 14px; border-radius:8px;">
+          ⛅ AI 날씨비서
+        </span>
+        <span style="background:rgba(255,255,255,0.1); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:.82rem; font-weight:700; padding:6px 14px; border-radius:8px;">
+          🛡️ 사회적 안전 인프라
+        </span>
+      </div>
+    </div>
+
+    <!-- 하단: 팀 브랜드 & 감사 인사 -->
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.15); padding-top:18px;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="font-size:2.4rem; font-weight:900; color:#ffffff; letter-spacing:3px; text-shadow:0 2px 10px rgba(0,0,0,0.5);">PSEE</span>
+        <span style="font-size:.82rem; color:#90a4ae; font-weight:600; line-height:1.35;">
+          Physical System & Edge Engineering<br>
+          <span style="color:#78909c;">AI Smart Entrance Project</span>
+        </span>
+      </div>
+
+      <div style="font-size:1.15rem; font-weight:800; color:#ffffff; letter-spacing:1px; background:rgba(33,150,243,0.25); border:1px solid rgba(100,181,246,0.4); padding:8px 20px; border-radius:8px;">
+        경청해 주셔서 감사합니다
+      </div>
+    </div>
+
+  </div>
+  <div class="notes">
+    저희는 세 가지를 지켰습니다.<br>
+    움직임이 아니라 존재를 보고, 추론하지 않고 입력받고, 감지에서 끝내지 않고 기록했습니다.<br>
+    묻지 않아도 켜지고, 물으면 답하고, 이제 안전과 돌봄까지 연결합니다.<br>
+    나가기 전 1분을 바꾸면, 하루가 바뀝니다.<br>
+    지금까지 <b>PSEE</b>의 <b>AI 스마트 현관</b> 발표였습니다. 감사합니다.
+  </div>
+</div>
+
+</div>
+
+<div class="progress-info"><span id="cur">1</span> / <span id="tot">10</span></div>
+<div class="nav-hint">← → 이동 · S 대본 토글 · F 전체화면</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let cur = 1;
+document.getElementById('tot').textContent = total;
+
+const promoVideos = [
+  { video: document.getElementById('promo-video-1'), placeholder: document.getElementById('video-placeholder-1'), slideNum: 2 },
+  { video: document.getElementById('promo-video-2'), placeholder: document.getElementById('video-placeholder-2'), slideNum: 3 },
+  { video: document.getElementById('promo-video-3'), placeholder: document.getElementById('video-placeholder-3'), slideNum: 10 }
+];
+
+promoVideos.forEach(({ video, placeholder }) => {
+  if (!video) return;
+  const onReady = () => {
+    if (placeholder) placeholder.style.display = 'none';
+    video.style.display = 'block';
+  };
+  const onError = () => {
+    if (placeholder) placeholder.style.display = 'block';
+    video.style.display = 'none';
+  };
+
+  video.addEventListener('loadeddata', onReady);
+  video.addEventListener('canplay', onReady);
+  video.addEventListener('error', onError);
+
+  if (video.readyState >= 2) {
+    onReady();
+  }
+});
+
+function handleVideoPlayback(slideNum) {
+  promoVideos.forEach(({ video, slideNum: targetSlide }) => {
+    if (!video) return;
+    if (slideNum === targetSlide) {
+      // 자동 재생하지 않음 - 사용자가 재생 버튼을 눌러야 함
+      if (video.style.display === 'block') {
+        video.pause();
+        video.currentTime = 0;
+      }
+    } else {
+      video.pause();
+      video.currentTime = 0;
+    }
+  });
+}
+
+function show(n){
+  if(n > total) n = 1;
+  if(n < 1) n = total;
+  cur = n;
+  slides.forEach(s => s.classList.remove('active'));
+  slides[cur-1].classList.add('active');
+  document.getElementById('cur').textContent = cur;
+  handleVideoPlayback(cur);
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown'){ e.preventDefault(); show(cur+1); }
+  else if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); show(cur-1); }
+  else if(e.key === 'Home'){ e.preventDefault(); show(1); }
+  else if(e.key === 'End'){ e.preventDefault(); show(total); }
+  else if(e.key === 's' || e.key === 'S'){ document.body.classList.toggle('notes-on'); }
+  else if(e.key === 'f' || e.key === 'F'){
+    if(!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  }
+});
+
+document.addEventListener('click', e => {
+  if(e.target.closest('.notes') || e.target.closest('.video-container')) return;
+  show(cur+1);
+});
+
+let tsx = 0;
+document.addEventListener('touchstart', e => { tsx = e.changedTouches[0].screenX; });
+document.addEventListener('touchend', e => {
+  const d = tsx - e.changedTouches[0].screenX;
+  if(Math.abs(d) > 50) show(d > 0 ? cur+1 : cur-1);
+});
+</script>
+</body>
+</html>
