@@ -771,8 +771,77 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 12. INTERMISSION: FUTURE DIRECTION ============ -->
-<div class="slide" id="s12" style="position:relative; overflow:hidden; background:linear-gradient(135deg, #071526 0%, #0d2847 65%, #103c68 100%); color:#fff;">
+<!-- ============ 12. SMART LIGHTING PCB & PROTOTYPE ============ -->
+<div class="slide" id="s12">
+  <div class="slide-content" style="padding:24px 48px; display:flex; flex-direction:column; justify-content:space-between;">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="margin-bottom:3px;">Subsystem 2</div>
+      <div class="slide-title" style="font-size:2.2rem; margin-bottom:3px;">스마트 센서등 — Hardware</div>
+      <div style="font-size:1.02rem; font-weight:700; color:#1565c0;">
+        "커스텀 PCB 설계 및 하드웨어 프로토타입 구현"
+      </div>
+    </div>
+
+    <!-- 3단 카드 그리드 (2D 아트워크 → 3D 렌더링 → 실제 프로토타입) -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin:10px 0; align-items:stretch;">
+      
+      <!-- Card 1: 2D Layout -->
+      <div style="background:#ffffff; border:1.5px solid #d0e1fd; border-radius:12px; padding:12px 14px; box-shadow:0 3px 10px rgba(21,101,192,0.06); display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="text-align:center; margin-bottom:8px;">
+          <span style="background:#e3f2fd; color:#1565c0; font-size:.74rem; font-weight:800; padding:3px 8px; border-radius:4px;">01. PCB Design</span>
+          <div style="font-size:.95rem; font-weight:900; color:#12456b; margin-top:4px;">2D PCB Layout</div>
+        </div>
+        <div style="background:#1a1a1a; border-radius:8px; overflow:hidden; height:200px; display:flex; align-items:center; justify-content:center; border:1px solid #333;">
+          <img src="assets/pcb_layout.png" alt="2D PCB Layout" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div style="font-size:.76rem; color:#546e7a; margin-top:8px; line-height:1.45; text-align:center;">
+          ESP32-C6 / LD2410C 센서 배선<br>5V BUS 라인 및 접지면 최적화
+        </div>
+      </div>
+
+      <!-- Card 2: 3D Modeling -->
+      <div style="background:#ffffff; border:1.5px solid #d0e1fd; border-radius:12px; padding:12px 14px; box-shadow:0 3px 10px rgba(21,101,192,0.06); display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="text-align:center; margin-bottom:8px;">
+          <span style="background:#e3f2fd; color:#1565c0; font-size:.74rem; font-weight:800; padding:3px 8px; border-radius:4px;">02. 3D Modeling</span>
+          <div style="font-size:.95rem; font-weight:900; color:#12456b; margin-top:4px;">3D Component View</div>
+        </div>
+        <div style="background:#111; border-radius:8px; overflow:hidden; height:200px; display:flex; align-items:center; justify-content:center; border:1px solid #333;">
+          <img src="assets/pcb_3d.png" alt="3D PCB Modeling" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div style="font-size:.76rem; color:#546e7a; margin-top:8px; line-height:1.45; text-align:center;">
+          부품 실장 간섭 검증<br>단자대 및 커패시터 입체 배치
+        </div>
+      </div>
+
+      <!-- Card 3: Real Prototype -->
+      <div style="background:#ffffff; border:2px solid #2e7d32; border-radius:12px; padding:12px 14px; box-shadow:0 3px 10px rgba(46,125,50,0.08); display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="text-align:center; margin-bottom:8px;">
+          <span style="background:#e8f5e9; color:#2e7d32; font-size:.74rem; font-weight:800; padding:3px 8px; border-radius:4px;">03. Prototype</span>
+          <div style="font-size:.95rem; font-weight:900; color:#1b5e20; margin-top:4px;">실물 프로토타입 제작</div>
+        </div>
+        <div style="background:#222; border-radius:8px; overflow:hidden; height:200px; display:flex; align-items:center; justify-content:center; border:1px solid #444;">
+          <img src="assets/pcb_real.png" alt="Real Hardware Prototype" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div style="font-size:.76rem; color:#2e7d32; font-weight:700; margin-top:8px; line-height:1.45; text-align:center;">
+          실제 제작 PCB + 센서 + 릴레이<br>고출력 LED 및 전원 일체화 구동
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 하단 요약 배너 -->
+    <div style="background:#f1f8e9; border:1.5px solid #c8e6c9; border-radius:8px; padding:7px 16px; text-align:center; font-size:.82rem; font-weight:800; color:#2e7d32;">
+      ✔ 단순 브레드보드 테스트를 넘어 실제 PCB 아트워크 설계 및 실물 하드웨어 프로토타입까지 완성했습니다.
+    </div>
+
+  </div>
+  <div class="notes">
+    보시는 것처럼 저희는 브레드보드 테스트에 그치지 않고, <b>직접 2D PCB 아트워크 설계부터 3D 렌더링 검증, 그리고 실제 PCB 제작 및 결합까지 완료</b>하여 완제품 형태의 안정적인 하드웨어 프로토타입을 구현했습니다.
+  </div>
+</div>
+
+<!-- ============ 13. INTERMISSION: FUTURE DIRECTION ============ -->
+<div class="slide" id="s13" style="position:relative; overflow:hidden; background:linear-gradient(135deg, #071526 0%, #0d2847 65%, #103c68 100%); color:#fff;">
   <div class="slide-content" style="padding:48px 64px; height:100%; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box;">
     
     <!-- 상단: 섹션 뱃지 -->
@@ -818,8 +887,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 13. FUTURE DIRECTION 1/2 — CARE & WELFARE ============ -->
-<div class="slide" id="s13">
+<!-- ============ 14. FUTURE DIRECTION 1/2 — CARE & WELFARE ============ -->
+<div class="slide" id="s14">
   <div class="slide-content" style="padding:22px 42px; display:flex; flex-direction:column; justify-content:space-between; gap:14px;">
     <div>
       <div class="eyebrow" style="margin-bottom:3px;">Future Direction 1 / 2</div>
@@ -938,8 +1007,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 14. HOOK / VIDEO (STALKING & NIGHT CORRIDOR) ============ -->
-<div class="slide" id="s14">
+<!-- ============ 15. HOOK / VIDEO (STALKING & NIGHT CORRIDOR) ============ -->
+<div class="slide" id="s15">
   <div class="slide-content" style="text-align:center;">
     <div class="eyebrow">Future Direction 2 / 2</div>
     <div class="slide-title">향후 발전 계획 — 더 안전한 공간으로</div>
@@ -956,8 +1025,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 15. FUTURE DIRECTION 2/2 — SAFETY INFRASTRUCTURE ============ -->
-<div class="slide" id="s15">
+<!-- ============ 16. FUTURE DIRECTION 2/2 — SAFETY INFRASTRUCTURE ============ -->
+<div class="slide" id="s16">
   <div class="slide-content" style="padding:16px 42px; display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
     
     <!-- [상단 헤더 영역] -->
@@ -1085,8 +1154,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 16. CLOSING ============ -->
-<div class="slide" id="s16" style="position:relative; overflow:hidden; background:#071526;">
+<!-- ============ 17. CLOSING ============ -->
+<div class="slide" id="s17" style="position:relative; overflow:hidden; background:#071526;">
   
   <!-- 배경 전체 사진 (1번 슬라이드와 수미상관) -->
   <div style="position:absolute; inset:0; background:url('assets/cover.png') no-repeat right center / cover; z-index:1;"></div>
@@ -1156,7 +1225,7 @@ body.notes-on .slide.active .notes{ display:block; }
 
 </div>
 
-<div class="progress-info"><span id="cur">1</span> / <span id="tot">16</span></div>
+<div class="progress-info"><span id="cur">1</span> / <span id="tot">17</span></div>
 <div class="nav-hint">← → 이동 · S 대본 토글 · F 전체화면</div>
 
 <script>
@@ -1168,7 +1237,7 @@ document.getElementById('tot').textContent = total;
 const promoVideos = [
   { video: document.getElementById('promo-video-1'), slideNum: 3 },
   { video: document.getElementById('promo-video-2'), slideNum: 4 },
-  { video: document.getElementById('promo-video-3'), slideNum: 14 }
+  { video: document.getElementById('promo-video-3'), slideNum: 15 }
 ];
 
 function handleVideoPlayback(slideNum) {
