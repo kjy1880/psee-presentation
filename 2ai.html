@@ -370,8 +370,74 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 2. HOOK / AD VIDEO ============ -->
+<!-- ============ 2. AGENDA ============ -->
 <div class="slide" id="s2">
+  <div class="slide-content" style="padding:30px 54px; display:flex; flex-direction:column; justify-content:space-between;">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="margin-bottom:4px;">Table of Contents</div>
+      <div class="slide-title" style="font-size:2.4rem; margin-bottom:4px;">오늘의 발표 순서</div>
+      <div style="font-size:1.02rem; color:#546e7a; font-weight:600;">
+        "사람이 머무는 공간을 다시 보기 위한 4가지 핵심 여정"
+      </div>
+    </div>
+
+    <!-- 4개 챕터 카드 그리드 (2x2) -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0;">
+      
+      <!-- 01 -->
+      <div style="background:#ffffff; border:2px solid rgba(21,101,192,.25); border-radius:12px; padding:18px 22px; display:flex; align-items:center; gap:16px; box-shadow:0 3px 12px rgba(0,0,0,.04);">
+        <div style="font-size:2.2rem; font-weight:900; color:#1565c0; line-height:1; min-width:48px;">01</div>
+        <div>
+          <div style="font-size:.80rem; font-weight:800; color:#1976d2; text-transform:uppercase; letter-spacing:1px;">Problem & Concept</div>
+          <div style="font-size:1.12rem; font-weight:800; color:#12456b; margin:2px 0;">불편의 원인과 전제의 전환</div>
+          <div style="font-size:.76rem; color:#546e7a;">외출 전 5단계의 불편함 · 움직임 감지 vs 존재 감지</div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div style="background:#ffffff; border:2px solid rgba(21,101,192,.25); border-radius:12px; padding:18px 22px; display:flex; align-items:center; gap:16px; box-shadow:0 3px 12px rgba(0,0,0,.04);">
+        <div style="font-size:2.2rem; font-weight:900; color:#1565c0; line-height:1; min-width:48px;">02</div>
+        <div>
+          <div style="font-size:.80rem; font-weight:800; color:#1976d2; text-transform:uppercase; letter-spacing:1px;">Live Demonstration</div>
+          <div style="font-size:1.12rem; font-weight:800; color:#12456b; margin:2px 0;">실시간 기능 시연</div>
+          <div style="font-size:.76rem; color:#546e7a;">AI 날씨비서 1초 음성 안내 & 스마트 센서등 지속 점등</div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div style="background:#ffffff; border:2px solid rgba(21,101,192,.25); border-radius:12px; padding:18px 22px; display:flex; align-items:center; gap:16px; box-shadow:0 3px 12px rgba(0,0,0,.04);">
+        <div style="font-size:2.2rem; font-weight:900; color:#1565c0; line-height:1; min-width:48px;">03</div>
+        <div>
+          <div style="font-size:.80rem; font-weight:800; color:#1976d2; text-transform:uppercase; letter-spacing:1px;">Hardware Architecture</div>
+          <div style="font-size:1.12rem; font-weight:800; color:#12456b; margin:2px 0;">시스템 구성 및 회로 설계</div>
+          <div style="font-size:.76rem; color:#546e7a;">XIAO ESP32-C6 엣지 로직 · mmWave 센서 · DFPlayer 음성 조합</div>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div style="background:#ffffff; border:2px solid rgba(21,101,192,.25); border-radius:12px; padding:18px 22px; display:flex; align-items:center; gap:16px; box-shadow:0 3px 12px rgba(0,0,0,.04);">
+        <div style="font-size:2.2rem; font-weight:900; color:#1565c0; line-height:1; min-width:48px;">04</div>
+        <div>
+          <div style="font-size:.80rem; font-weight:800; color:#1976d2; text-transform:uppercase; letter-spacing:1px;">Future Direction</div>
+          <div style="font-size:1.12rem; font-weight:800; color:#12456b; margin:2px 0;">돌봄 및 공간 안전 확장</div>
+          <div style="font-size:.76rem; color:#546e7a;">초고령사회 비침해적 일상 돌봄 & 야간 복도 안전 인프라</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 하단 요약 배너 -->
+    <div style="background:rgba(21,101,192,.07); border:1.5px solid rgba(21,101,192,.25); border-radius:8px; padding:8px 16px; text-align:center; font-size:.84rem; font-weight:700; color:#12456b;">
+      PSEE · AI Smart Entrance System Presentation
+    </div>
+  </div>
+  <div class="notes">
+    오늘 발표는 <b>문제 정의와 개념 전환</b>을 시작으로, <b>실시간 LIVE DEMO 시연</b>, <b>하드웨어 아키텍처</b>, 그리고 <b>향후 돌봄 및 안전 인프라 확장 방향</b> 순으로 말씀드리겠습니다.
+  </div>
+</div>
+
+<!-- ============ 3. HOOK / AD VIDEO ============ -->
+<div class="slide" id="s3">
   <div class="slide-content" style="text-align:center;">
     <div class="eyebrow">Hook</div>
     <div class="slide-title">다들 이런 경험 있으신가요?</div>
@@ -388,8 +454,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 3. HOOK / AD VIDEO (REPEAT) ============ -->
-<div class="slide" id="s3">
+<!-- ============ 4. HOOK / AD VIDEO (REPEAT) ============ -->
+<div class="slide" id="s4">
   <div class="slide-content" style="text-align:center;">
     <div class="eyebrow">Hook</div>
     <div class="slide-title">다들 이런 경험 있으신가요?</div>
@@ -406,8 +472,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 4. PROBLEM ============ -->
-<div class="slide" id="s4">
+<!-- ============ 5. PROBLEM ============ -->
+<div class="slide" id="s5">
   <div class="slide-content">
     <div class="eyebrow">Problem</div>
     <div class="slide-title">불편의 원인은 <span class="hl-red">기술의 전제</span>에 있었습니다</div>
@@ -447,8 +513,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 5. BEFORE / AFTER ============ -->
-<div class="slide" id="s5">
+<!-- ============ 6. BEFORE / AFTER ============ -->
+<div class="slide" id="s6">
   <div class="slide-content">
     <div class="eyebrow">Before → After</div>
     <div class="slide-title"><span class="hl-red">전제</span>를 바꾸면 <span class="hl-green">결과</span>가 바뀝니다</div>
@@ -485,8 +551,56 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 6. LIVE DEMO ============ -->
-<div class="slide" id="s6">
+<!-- ============ 7. INTERMISSION: LIVE DEMO ============ -->
+<div class="slide" id="s7" style="position:relative; overflow:hidden; background:linear-gradient(135deg, #071526 0%, #0d2847 65%, #103c68 100%); color:#fff;">
+  <div class="slide-content" style="padding:48px 64px; height:100%; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box;">
+    
+    <!-- 상단: 섹션 뱃지 -->
+    <div>
+      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(33,150,243,0.2); border:1px solid rgba(100,181,246,0.4); padding:6px 16px; border-radius:20px; color:#90caf9; font-size:.84rem; font-weight:800; letter-spacing:2px;">
+        SECTION 02
+      </div>
+    </div>
+
+    <!-- 중단: 메인 타이틀 & 시연 예고 -->
+    <div style="max-width:800px; margin:24px 0;">
+      <div style="font-size:1.15rem; font-weight:600; color:#90caf9; margin-bottom:8px; letter-spacing:1px;">
+        Direct Verification · System Operation
+      </div>
+      <div style="font-size:3.8rem; font-weight:900; color:#ffffff; line-height:1.12; margin-bottom:14px; letter-spacing:-1px; text-shadow:0 4px 20px rgba(0,0,0,0.5);">
+        LIVE DEMO
+      </div>
+      <div style="font-size:1.5rem; font-weight:700; color:#e0e0e0; margin-bottom:24px;">
+        지금부터 <span style="color:#4fc3f7; text-shadow:0 0 16px rgba(79,195,247,0.4);">직접 눈앞에서 확인</span>해 보겠습니다
+      </div>
+
+      <!-- 시연 포인트 2개 카드 칩 -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div style="background:rgba(255,255,255,0.08); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:16px 20px;">
+          <div style="font-size:1.1rem; font-weight:800; color:#4fc3f7; margin-bottom:4px;">① AI 날씨비서</div>
+          <div style="font-size:.84rem; color:#cfd8dc; line-height:1.45;">버튼 1회 입력으로 기상청 실시간 데이터를 즉시 음성 조합 안내</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:16px 20px;">
+          <div style="font-size:1.1rem; font-weight:800; color:#81c784; margin-bottom:4px;">② 스마트 센서등</div>
+          <div style="font-size:.84rem; color:#cfd8dc; line-height:1.45;">가만히 서 있어도 꺼지지 않고 존재가 유지되는 동안 지속 점등</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 하단: 힌트 바 -->
+    <div style="border-top:1px solid rgba(255,255,255,0.15); padding-top:16px; font-size:.82rem; color:#90a4ae; font-weight:600;">
+      PSEE · 실물 하드웨어 시연 준비
+    </div>
+
+  </div>
+  <div class="notes">
+    <span class="cue">[제품 앞으로 이동하며 브릿지 멘트]</span><br>
+    지금까지 말씀드린 두 가지 핵심 기능이 실제로 어떻게 동작하는지, <b>직접 눈앞에서 LIVE DEMO로 확인</b>해 보겠습니다.
+  </div>
+</div>
+
+<!-- ============ 8. LIVE DEMO ============ -->
+<div class="slide" id="s8">
   <div class="slide-content">
     <div class="eyebrow">Live Demo</div>
     <div class="demo-big">직접 확인해 보겠습니다</div>
@@ -539,8 +653,55 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 7. WEATHER HW ============ -->
-<div class="slide" id="s7">
+<!-- ============ 9. INTERMISSION: HARDWARE ARCHITECTURE ============ -->
+<div class="slide" id="s9" style="position:relative; overflow:hidden; background:linear-gradient(135deg, #071526 0%, #0d2847 65%, #103c68 100%); color:#fff;">
+  <div class="slide-content" style="padding:48px 64px; height:100%; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box;">
+    
+    <!-- 상단: 섹션 뱃지 -->
+    <div>
+      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(33,150,243,0.2); border:1px solid rgba(100,181,246,0.4); padding:6px 16px; border-radius:20px; color:#90caf9; font-size:.84rem; font-weight:800; letter-spacing:2px;">
+        SECTION 03
+      </div>
+    </div>
+
+    <!-- 중단: 메인 타이틀 & 하드웨어 예고 -->
+    <div style="max-width:800px; margin:24px 0;">
+      <div style="font-size:1.15rem; font-weight:600; color:#90caf9; margin-bottom:8px; letter-spacing:1px;">
+        Circuit & System Structure
+      </div>
+      <div style="font-size:3.5rem; font-weight:900; color:#ffffff; line-height:1.12; margin-bottom:14px; letter-spacing:-1px; text-shadow:0 4px 20px rgba(0,0,0,0.5);">
+        HARDWARE ARCHITECTURE
+      </div>
+      <div style="font-size:1.5rem; font-weight:700; color:#e0e0e0; margin-bottom:24px;">
+        복잡함을 덜어낸 <span style="color:#4fc3f7; text-shadow:0 0 16px rgba(79,195,247,0.4);">엣지 하드웨어 설계</span>
+      </div>
+
+      <!-- 하드웨어 구성 2개 카드 칩 -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div style="background:rgba(255,255,255,0.08); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:16px 20px;">
+          <div style="font-size:1.1rem; font-weight:800; color:#4fc3f7; margin-bottom:4px;">⛅ AI 날씨비서 회로</div>
+          <div style="font-size:.84rem; color:#cfd8dc; line-height:1.45;">XIAO ESP32-C6 + DFPlayer Mini + SD카드 음성 조각 43개 실시간 조합</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:16px 20px;">
+          <div style="font-size:1.1rem; font-weight:800; color:#81c784; margin-bottom:4px;">💡 스마트 센서등 회로</div>
+          <div style="font-size:.84rem; color:#cfd8dc; line-height:1.45;">HLK-LD2410C mmWave 센서 + 엣지 판단 로직 + 5V Relay 조명 제어</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 하단: 힌트 바 -->
+    <div style="border-top:1px solid rgba(255,255,255,0.15); padding-top:16px; font-size:.82rem; color:#90a4ae; font-weight:600;">
+      PSEE · 서브시스템별 하드웨어 상세 구성
+    </div>
+
+  </div>
+  <div class="notes">
+    이러한 기능을 구현한 <b>하드웨어 아키텍처</b>를 살펴보겠습니다. 복잡한 클라우드 의존 없이 <b>엣지에서 즉각 판단하고 응답하도록 설계된 회로 구조</b>입니다.
+  </div>
+</div>
+
+<!-- ============ 10. WEATHER HW ============ -->
+<div class="slide" id="s10">
   <div class="slide-content">
     <div class="eyebrow">Subsystem 1</div>
     <div class="slide-title">AI 날씨비서 — Hardware</div>
@@ -575,8 +736,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 8. SMART LIGHTING HW ============ -->
-<div class="slide" id="s8">
+<!-- ============ 11. SMART LIGHTING HW ============ -->
+<div class="slide" id="s11">
   <div class="slide-content">
     <div class="eyebrow">Subsystem 2</div>
     <div class="slide-title">스마트 센서등 — Hardware</div>
@@ -610,8 +771,55 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 9. FUTURE DIRECTION 1/2 — CARE & WELFARE ============ -->
-<div class="slide" id="s9">
+<!-- ============ 12. INTERMISSION: FUTURE DIRECTION ============ -->
+<div class="slide" id="s12" style="position:relative; overflow:hidden; background:linear-gradient(135deg, #071526 0%, #0d2847 65%, #103c68 100%); color:#fff;">
+  <div class="slide-content" style="padding:48px 64px; height:100%; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box;">
+    
+    <!-- 상단: 섹션 뱃지 -->
+    <div>
+      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(33,150,243,0.2); border:1px solid rgba(100,181,246,0.4); padding:6px 16px; border-radius:20px; color:#90caf9; font-size:.84rem; font-weight:800; letter-spacing:2px;">
+        SECTION 04
+      </div>
+    </div>
+
+    <!-- 중단: 메인 타이틀 & 확장 방향 예고 -->
+    <div style="max-width:800px; margin:24px 0;">
+      <div style="font-size:1.15rem; font-weight:600; color:#90caf9; margin-bottom:8px; letter-spacing:1px;">
+        Vision & Social Expansion
+      </div>
+      <div style="font-size:3.5rem; font-weight:900; color:#ffffff; line-height:1.12; margin-bottom:14px; letter-spacing:-1px; text-shadow:0 4px 20px rgba(0,0,0,0.5);">
+        FUTURE DIRECTION
+      </div>
+      <div style="font-size:1.5rem; font-weight:700; color:#e0e0e0; margin-bottom:24px;">
+        신발장을 넘어, <span style="color:#4fc3f7; text-shadow:0 0 16px rgba(79,195,247,0.4);">공간과 사람을 지키는 기술로</span>
+      </div>
+
+      <!-- 확장 방향 2개 카드 칩 -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div style="background:rgba(255,255,255,0.08); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:16px 20px;">
+          <div style="font-size:1.1rem; font-weight:800; color:#4fc3f7; margin-bottom:4px;">👵 초고령사회 돌봄 (Care)</div>
+          <div style="font-size:.84rem; color:#cfd8dc; line-height:1.45;">감시가 아닌 일상 행동 기록 → 두 생활 신호 부재 시 실제 안부 확인 연계</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:16px 20px;">
+          <div style="font-size:1.1rem; font-weight:800; color:#81c784; margin-bottom:4px;">🛡️ 공간 안전 인프라 (Safety)</div>
+          <div style="font-size:.84rem; color:#cfd8dc; line-height:1.45;">야간 복도·비상계단 존재 감지 지속 조명 → 스토킹 등 범죄 예방 지원</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 하단: 힌트 바 -->
+    <div style="border-top:1px solid rgba(255,255,255,0.15); padding-top:16px; font-size:.82rem; color:#90a4ae; font-weight:600;">
+      PSEE · AI 스마트 현관 미래 확장 로드맵
+    </div>
+
+  </div>
+  <div class="notes">
+    마지막으로 저희 기술의 <b>향후 발전 방향</b>입니다. 신발장을 넘어 <b>초고령사회 비침해적 일상 돌봄</b>과 <b>공간 안전 인프라</b>로의 확장 계획을 말씀드리겠습니다.
+  </div>
+</div>
+
+<!-- ============ 13. FUTURE DIRECTION 1/2 — CARE & WELFARE ============ -->
+<div class="slide" id="s13">
   <div class="slide-content" style="padding:22px 42px; display:flex; flex-direction:column; justify-content:space-between; gap:14px;">
     <div>
       <div class="eyebrow" style="margin-bottom:3px;">Future Direction 1 / 2</div>
@@ -730,8 +938,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 10. HOOK / VIDEO (STALKING & NIGHT CORRIDOR) ============ -->
-<div class="slide" id="s10">
+<!-- ============ 14. HOOK / VIDEO (STALKING & NIGHT CORRIDOR) ============ -->
+<div class="slide" id="s14">
   <div class="slide-content" style="text-align:center;">
     <div class="eyebrow">Future Direction 2 / 2</div>
     <div class="slide-title">향후 발전 계획 — 더 안전한 공간으로</div>
@@ -748,8 +956,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 11. FUTURE DIRECTION 2/2 — SAFETY INFRASTRUCTURE ============ -->
-<div class="slide" id="s11">
+<!-- ============ 15. FUTURE DIRECTION 2/2 — SAFETY INFRASTRUCTURE ============ -->
+<div class="slide" id="s15">
   <div class="slide-content" style="padding:16px 42px; display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
     
     <!-- [상단 헤더 영역] -->
@@ -877,8 +1085,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 12. CLOSING ============ -->
-<div class="slide" id="s12" style="position:relative; overflow:hidden; background:#071526;">
+<!-- ============ 16. CLOSING ============ -->
+<div class="slide" id="s16" style="position:relative; overflow:hidden; background:#071526;">
   
   <!-- 배경 전체 사진 (1번 슬라이드와 수미상관) -->
   <div style="position:absolute; inset:0; background:url('assets/cover.png') no-repeat right center / cover; z-index:1;"></div>
@@ -948,7 +1156,7 @@ body.notes-on .slide.active .notes{ display:block; }
 
 </div>
 
-<div class="progress-info"><span id="cur">1</span> / <span id="tot">10</span></div>
+<div class="progress-info"><span id="cur">1</span> / <span id="tot">16</span></div>
 <div class="nav-hint">← → 이동 · S 대본 토글 · F 전체화면</div>
 
 <script>
@@ -958,9 +1166,9 @@ let cur = 1;
 document.getElementById('tot').textContent = total;
 
 const promoVideos = [
-  { video: document.getElementById('promo-video-1'), slideNum: 2 },
-  { video: document.getElementById('promo-video-2'), slideNum: 3 },
-  { video: document.getElementById('promo-video-3'), slideNum: 10 }
+  { video: document.getElementById('promo-video-1'), slideNum: 3 },
+  { video: document.getElementById('promo-video-2'), slideNum: 4 },
+  { video: document.getElementById('promo-video-3'), slideNum: 14 }
 ];
 
 function handleVideoPlayback(slideNum) {
