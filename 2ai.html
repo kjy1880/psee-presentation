@@ -736,8 +736,71 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 11. SMART LIGHTING HW ============ -->
+<!-- ============ 11. WEATHER HW PROTOTYPE ============ -->
 <div class="slide" id="s11">
+  <div class="slide-content" style="padding:24px 48px; display:flex; flex-direction:column; justify-content:space-between;">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="margin-bottom:3px;">Subsystem 1</div>
+      <div class="slide-title" style="font-size:2.2rem; margin-bottom:3px;">AI 날씨비서 — Hardware</div>
+      <div style="font-size:1.02rem; font-weight:700; color:#1565c0;">
+        "실물 하드웨어 프로토타입 구현 및 배선 검증"
+      </div>
+    </div>
+
+    <!-- 2단 레이아웃 (좌: 대형 실물 사진, 우: 핵심 부품 매핑 및 음성 조합 원리) -->
+    <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:20px; margin:10px 0; align-items:center;">
+      
+      <!-- 좌측: 실물 프로토타입 사진 카드 -->
+      <div style="background:#ffffff; border:1.5px solid #d0e1fd; border-radius:12px; padding:12px; box-shadow:0 3px 12px rgba(21,101,192,0.08);">
+        <div style="background:#1e293b; border-radius:8px; overflow:hidden; height:290px; display:flex; align-items:center; justify-content:center;">
+          <img src="assets/weather_real.png" alt="AI 날씨비서 실물 프로토타입" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div style="font-size:.76rem; color:#546e7a; margin-top:8px; text-align:center; font-weight:700;">
+          버튼 입력 · ESP32-C6 Wi-Fi 통신 · DFPlayer 음성 모듈 · 8Ω 스피커 실물 결합
+        </div>
+      </div>
+
+      <!-- 우측: 핵심 부품 및 43개 음성 조각 조합 설명 -->
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        
+        <div style="background:#ffffff; border:1.5px solid #bbdefb; border-radius:10px; padding:10px 14px; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
+          <div style="font-size:.88rem; font-weight:800; color:#1565c0; margin-bottom:2px;">🔘 메탈 푸시 버튼 & 보조 전원</div>
+          <div style="font-size:.78rem; color:#37474f; line-height:1.45;">
+            외출 직전 직관적으로 누를 수 있는 푸시 버튼 인터페이스 및 5V 안정적 전원 공급
+          </div>
+        </div>
+
+        <div style="background:#ffffff; border:1.5px solid #bbdefb; border-radius:10px; padding:10px 14px; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
+          <div style="font-size:.88rem; font-weight:800; color:#1565c0; margin-bottom:2px;">⚡ XIAO ESP32-C6 + DFPlayer Mini</div>
+          <div style="font-size:.78rem; color:#37474f; line-height:1.45;">
+            기상청 초단기실황 API 실시간 파싱 → <b>SD카드 43개 음성 조각</b>(기온, 날씨, 권장 복장) 즉시 연속 조합
+          </div>
+        </div>
+
+        <div style="background:#e8f5e9; border:1.5px solid #c8e6c9; border-radius:10px; padding:10px 14px;">
+          <div style="font-size:.88rem; font-weight:800; color:#2e7d32; margin-bottom:2px;">🔊 8Ω 고음질 스피커 출력</div>
+          <div style="font-size:.78rem; color:#1b5e20; line-height:1.45;">
+            현관 환경에 최적화된 명확한 음성 전달로 폰을 보지 않고 1초 만에 확인 가능
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 하단 요약 배너 -->
+    <div style="background:#e3f2fd; border:1.5px solid #bbdefb; border-radius:8px; padding:7px 16px; text-align:center; font-size:.82rem; font-weight:800; color:#1565c0;">
+      ✔ 브레드보드 실물 프로토타입을 통해 버튼 입력부터 기상청 API 파싱, 음성 조각 조합 출력까지 전 과정을 검증했습니다.
+    </div>
+
+  </div>
+  <div class="notes">
+    AI 날씨비서의 <b>실제 하드웨어 프로토타입 구성</b>입니다. 보시는 것처럼 버튼, ESP32-C6, DFPlayer Mini, 그리고 스피커를 연결하여 <b>버튼을 누르면 즉시 기상청 데이터를 실시간으로 가져와 43개 음성 조각으로 조합해 명확하게 들려주는 전 과정</b>을 성공적으로 검증했습니다.
+  </div>
+</div>
+
+<!-- ============ 12. SMART LIGHTING HW ============ -->
+<div class="slide" id="s12">
   <div class="slide-content">
     <div class="eyebrow">Subsystem 2</div>
     <div class="slide-title">스마트 센서등 — Hardware</div>
@@ -771,8 +834,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 12. SMART LIGHTING PCB & PROTOTYPE ============ -->
-<div class="slide" id="s12">
+<!-- ============ 13. SMART LIGHTING PCB & PROTOTYPE ============ -->
+<div class="slide" id="s13">
   <div class="slide-content" style="padding:24px 48px; display:flex; flex-direction:column; justify-content:space-between;">
     <div style="text-align:center;">
       <div class="eyebrow" style="margin-bottom:3px;">Subsystem 2</div>
@@ -840,8 +903,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 13. INTERMISSION: FUTURE DIRECTION ============ -->
-<div class="slide" id="s13" style="position:relative; overflow:hidden; background:linear-gradient(135deg, #071526 0%, #0d2847 65%, #103c68 100%); color:#fff;">
+<!-- ============ 14. INTERMISSION: FUTURE DIRECTION ============ -->
+<div class="slide" id="s14" style="position:relative; overflow:hidden; background:linear-gradient(135deg, #071526 0%, #0d2847 65%, #103c68 100%); color:#fff;">
   <div class="slide-content" style="padding:48px 64px; height:100%; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box;">
     
     <!-- 상단: 섹션 뱃지 -->
@@ -887,8 +950,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 14. FUTURE DIRECTION 1/2 — CARE & WELFARE ============ -->
-<div class="slide" id="s14">
+<!-- ============ 15. FUTURE DIRECTION 1/2 — CARE & WELFARE ============ -->
+<div class="slide" id="s15">
   <div class="slide-content" style="padding:22px 42px; display:flex; flex-direction:column; justify-content:space-between; gap:14px;">
     <div>
       <div class="eyebrow" style="margin-bottom:3px;">Future Direction 1 / 2</div>
@@ -1007,8 +1070,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 15. HOOK / VIDEO (STALKING & NIGHT CORRIDOR) ============ -->
-<div class="slide" id="s15">
+<!-- ============ 16. HOOK / VIDEO (STALKING & NIGHT CORRIDOR) ============ -->
+<div class="slide" id="s16">
   <div class="slide-content" style="text-align:center;">
     <div class="eyebrow">Future Direction 2 / 2</div>
     <div class="slide-title">향후 발전 계획 — 더 안전한 공간으로</div>
@@ -1025,8 +1088,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 16. FUTURE DIRECTION 2/2 — SAFETY INFRASTRUCTURE ============ -->
-<div class="slide" id="s16">
+<!-- ============ 17. FUTURE DIRECTION 2/2 — SAFETY INFRASTRUCTURE ============ -->
+<div class="slide" id="s17">
   <div class="slide-content" style="padding:16px 42px; display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
     
     <!-- [상단 헤더 영역] -->
@@ -1154,8 +1217,8 @@ body.notes-on .slide.active .notes{ display:block; }
   </div>
 </div>
 
-<!-- ============ 17. CLOSING ============ -->
-<div class="slide" id="s17" style="position:relative; overflow:hidden; background:#071526;">
+<!-- ============ 18. CLOSING ============ -->
+<div class="slide" id="s18" style="position:relative; overflow:hidden; background:#071526;">
   
   <!-- 배경 전체 사진 (1번 슬라이드와 수미상관) -->
   <div style="position:absolute; inset:0; background:url('assets/cover.png') no-repeat right center / cover; z-index:1;"></div>
@@ -1225,7 +1288,7 @@ body.notes-on .slide.active .notes{ display:block; }
 
 </div>
 
-<div class="progress-info"><span id="cur">1</span> / <span id="tot">17</span></div>
+<div class="progress-info"><span id="cur">1</span> / <span id="tot">18</span></div>
 <div class="nav-hint">← → 이동 · S 대본 토글 · F 전체화면</div>
 
 <script>
@@ -1237,7 +1300,7 @@ document.getElementById('tot').textContent = total;
 const promoVideos = [
   { video: document.getElementById('promo-video-1'), slideNum: 3 },
   { video: document.getElementById('promo-video-2'), slideNum: 4 },
-  { video: document.getElementById('promo-video-3'), slideNum: 15 }
+  { video: document.getElementById('promo-video-3'), slideNum: 16 }
 ];
 
 function handleVideoPlayback(slideNum) {
